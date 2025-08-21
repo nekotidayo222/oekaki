@@ -1,5 +1,6 @@
 import discord
 from discord import app_commands
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import io
 import os
