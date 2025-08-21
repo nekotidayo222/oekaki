@@ -19,8 +19,8 @@ async def draw(ctx, *, text: str):
     d = ImageDraw.Draw(img)
     # フォント指定（エラー時は標準フォント）
     try:
-    font = ImageFont.truetype("NotoSansJP-Regular.otf", 40)
-except:
+    font = ImageFont.truetype("NotoSansJP-Regular.otf", 40)  # ←インデントあり
+    except:
     font = ImageFont.load_default()
     d.text((10, 80), text, fill=(0, 0, 0), font=font)
     
