@@ -1,2 +1,2 @@
 discord.py==2.3.2
-pillow>=9.0.0
+PIL>=1.1.7
