@@ -5,7 +5,8 @@ import io
 import os
 
 TOKEN = os.getenv("TOKEN")
-ADMIN_ID = int(os.getenv("ADMIN_ID"))
+admin_ids_str = os.getenv("ADMIN_IDS", "")
+ADMIN_IDS = [int(i) for i in admin_ids_str.split(",") if i.strip().isdigit()]
 
 intents = discord.Intents.default()
 intents.message_content = True
