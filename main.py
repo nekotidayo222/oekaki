@@ -1,6 +1,6 @@
 import discord
 from discord import app_commands
-from Pillow import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 import io
 import os
 
