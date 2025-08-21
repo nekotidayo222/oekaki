@@ -26,7 +26,7 @@ async def draw(interaction: discord.Interaction, text: str):
     d.text((10, 80), text, fill=(0, 0, 0), font=font)
     
     # 画像をバイト配列に
-with io.BytesIO() as image_binary:
+    with io.BytesIO() as image_binary:
         img.save(image_binary, 'PNG')
         image_binary.seek(0)
         file = discord.File(fp=image_binary, filename='draw.png')
