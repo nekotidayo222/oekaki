@@ -1,2 +1,2 @@
 worker: python main.py
-PIL
+pillow>=9.0.0
