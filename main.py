@@ -44,7 +44,7 @@ async def draw(interaction: discord.Interaction, text: str):
     except:
         font = ImageFont.load_default()
     d.text((10, 80), text, fill=(0, 0, 0), font=font)
-    print(f"最終的に使う色: {text_color}")  # 確認用
+    print(f"最終的に使う色: {get_color}")  # 確認用
     d.text((10, 80), text, fill=text_color, font=font)
     
     # 画像をバイト配列に
