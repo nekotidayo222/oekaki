@@ -13,6 +13,24 @@ intents.message_content = True
 bot = discord.Client(intents=intents)
 tree = app_commands.CommandTree(bot)
 
+
+# カラーパース関数
+def get_color(color: str):
+    try:
+        # 色名や#RRGGBB形式も対応
+        return ImageColor.getrgb(color)
+    except:
+        # カンマで区切ったRGBにも対応（例: "255,0,0"）
+        try:
+            parts = [int(x.strip()) for x in color.split(",")]
+            if len(parts) == 3:
+                return tuple(parts)
+        except:
+            pass
+    # 無効なら黒
+    return (0, 0, 0)
+
+
 @tree.command(name="draw", description="テキストを画像に描画します")
 @app_commands.describe(text="画像に描くテキスト")
 async def draw(interaction: discord.Interaction, text: str):
