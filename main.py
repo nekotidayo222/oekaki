@@ -16,19 +16,20 @@ tree = app_commands.CommandTree(bot)
 
 # カラーパース関数
 def get_color(color: str):
+    print(f"受け取ったcolor={color}")  # 確認用
+    # 色名やHEXカラー対応
     try:
-        # 色名や#RRGGBB形式も対応
         return ImageColor.getrgb(color)
-    except:
-        # カンマで区切ったRGBにも対応（例: "255,0,0"）
-        try:
-            parts = [int(x.strip()) for x in color.split(",")]
-            if len(parts) == 3:
-                return tuple(parts)
-        except:
-            pass
-    # 無効なら黒
-    return (0, 0, 0)
+    except Exception as e:
+        print(f"getrgb error: {e}")
+    # カンマ区切りRGB対応
+    try:
+        parts = [int(x.strip()) for x in color.split(",")]
+        if len(parts) == 3:
+            return tuple(parts)
+    except Exception as e:
+        print(f"split error: {e}")
+    return (0, 0, 0)  # fallback:黒
 
 
 @tree.command(name="draw", description="テキストを画像に描画します")
@@ -43,6 +44,8 @@ async def draw(interaction: discord.Interaction, text: str):
     except:
         font = ImageFont.load_default()
     d.text((10, 80), text, fill=(0, 0, 0), font=font)
+    print(f"最終的に使う色: {text_color}")  # 確認用
+    d.text((10, 80), text, fill=text_color, font=font)
     
     # 画像をバイト配列に
     with io.BytesIO() as image_binary:
